@@ -1,0 +1,31 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include "ergolily.dtsi"
+
+&default_transform {
+    col-offset = <7>;
+};
+
+&kscan0 {
+    col-gpios
+        = <&gpio0 14 GPIO_ACTIVE_HIGH>  // P0.14 - innest / thumb4
+        , <&gpio0 10 GPIO_ACTIVE_HIGH>  // P0.10 - inner / thumb3
+        , <&gpio0 9  GPIO_ACTIVE_HIGH>  // P0.09 - index / thumb2
+        , <&gpio0 8  GPIO_ACTIVE_HIGH>  // P0.08 - middle / thumb1
+        , <&gpio0 7  GPIO_ACTIVE_HIGH>  // P0.07 - ring
+        , <&gpio0 6  GPIO_ACTIVE_HIGH>  // P0.06 - pinkie
+        , <&gpio0 16 GPIO_ACTIVE_HIGH>  // P0.16 - outer
+        ;
+
+    row-gpios
+        = <&gpio0 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P0.00 - lower
+        , <&gpio0 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P0.01 - home
+        , <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P0.02 - upper
+        , <&gpio0 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P0.03 - num
+        , <&gpio0 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P0.04 - thumb row
+        ;
+};
