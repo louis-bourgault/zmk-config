@@ -20,6 +20,5 @@
 ---
 include:
   - board: nice_nano@1.0.0
-    shield: ergolily_left
+    shield: settings_reset
   - board: nice_nano@1.0.0
-    shield: ergolily_right
