@@ -12,13 +12,13 @@
 
 &kscan0 {
     col-gpios
-        = <&gpio1 13 GPIO_ACTIVE_HIGH>  // P0.14 - innest / thumb4
-        , <&gpio0 9 GPIO_ACTIVE_HIGH>  // P0.10 - inner / thumb3
-        , <&gpio1 6  GPIO_ACTIVE_HIGH>  // P0.09 - index / thumb2
-        , <&gpio1 4  GPIO_ACTIVE_HIGH>  // P0.08 - middle / thumb1
-        , <&gpio0 11  GPIO_ACTIVE_HIGH>  // P0.07 - ring
+        = <&gpio0 10 GPIO_ACTIVE_HIGH>  // P0.16 - outer
         , <&gpio1 0  GPIO_ACTIVE_HIGH>  // P0.06 - pinkie
-        , <&gpio0 10 GPIO_ACTIVE_HIGH>  // P0.16 - outer
+        , <&gpio0 11  GPIO_ACTIVE_HIGH>  // P0.07 - ring
+        , <&gpio1 4  GPIO_ACTIVE_HIGH>  // P0.08 - middle / thumb1
+        , <&gpio1 6  GPIO_ACTIVE_HIGH>  // P0.09 - index / thumb2
+        , <&gpio0 9 GPIO_ACTIVE_HIGH>  // P0.10 - inner / thumb3
+        , <&gpio1 13 GPIO_ACTIVE_HIGH>  // P0.14 - innest / thumb4
         ;
 
     row-gpios
