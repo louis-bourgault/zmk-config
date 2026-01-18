@@ -21,7 +21,8 @@
         , <&gpio0 10 GPIO_ACTIVE_HIGH>  // P0.16 - outer
         ;
 
-    = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P0.00 - lower
+    row-gpios
+        = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P0.00 - lower
         , <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P0.01 - home
         , <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P0.02 - upper
         , <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // P0.03 - num
