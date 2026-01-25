@@ -1,0 +1,173 @@
+meta:
+  engine: 4.1.0
+
+points:
+  zones:
+    matrix:
+      columns:
+        outer:
+          key:
+            column_net: P16
+
+        pinkie:
+          key:
+            column_net: P6
+        ring:
+          key:
+            stagger: 6
+            column_net: P7
+        middle:
+          key:
+            stagger: 3
+            column_net: P8
+        index:
+          key:
+            stagger: -3
+            column_net: P9
+        inner:
+          key:
+            column_net: P10
+        innest:
+          key:
+            stagger: 6
+            column_net: P11
+          rows.home.skip: true
+          rows.num.skip: true
+          rows.upper.skip: true
+
+      rows:
+        lower:
+          row_net: P0
+        home:
+          row_net: P1
+        upper:
+          row_net: P2
+        num:
+          row_net: P3
+    thumbs:
+      anchor:
+        ref: matrix_inner_lower
+        shift: [-2U, -19]
+      rotate:
+      columns:
+        1:
+          key:
+            column_net: P8
+        2:
+          rows.bottom.skip: true
+          key:
+            column_net: P9
+        3:
+          key:
+            column_net: P10
+            rotate: -5
+            shift: [2, 0]
+        4:
+          key:
+            rotate: -8
+            shift: [3, 2]
+            column_net: P14
+          rows.bottom.skip: true
+
+      rows:
+        top:
+          row_net: P4
+
+outlines:
+  keys:
+    - what: rectangle
+      where: true
+      size: [U + 1, U + 1]
+  board:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_outer_num
+          shift: [-0.6U, 1U]
+        - ref: matrix_middle_num
+          shift: [0, 0.6U]
+        - ref: matrix_inner_num
+          shift: [1.73U, 0.7U]
+        - ref: matrix_innest_lower
+          shift: [0.7U, 0]
+        - ref: thumbs_4_top
+          shift: [0.6U, 0.4U]
+        - ref: thumbs_4_top
+          shift: [0.6U, -0.4U]
+        - ref: thumbs_1_top
+          shift: [-0.6U, -0.4U]
+        - ref: matrix_ring_lower
+          shift: [0, -1U]
+        - ref: matrix_pinkie_lower
+          shift: [0, -0.6U]
+        - ref: matrix_outer_lower
+          shift: [-0.6U, -0.6U]
+  left:
+    - where: true
+      what: rectangle
+      size: [U+2, U+3]
+      fillet: 3
+  outlines:
+    - where: true
+      what: rectangle
+      size: [14, 14]
+  cutout:
+    - name: left
+    - operation: subtract
+      name: outlines
+
+cases:
+  plate:
+    - name: cutout
+      extrude: 1.2
+
+pcbs:
+  main:
+    template: kicad8
+    outlines:
+      main:
+        outline: board
+    footprints:
+      switch:
+        what: mx
+        where: true
+        params:
+          reverse: true
+
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+
+        adjust:
+          shift: [0, 9] #not sure about this shift but thats ok for now
+      controller:
+        what: ceoloide/mcu_supermini_nrf52840
+        where:
+          ref: matrix_inner_num
+          shift: [1.1U, -7]
+          rotate: 0
+        params:
+          reversible: true
+      reset:
+        what: button
+        params:
+          from: GND
+          to: RST
+
+        where:
+          ref: matrix_inner_num
+          shift: [0.85U, -1.6U]
+      battery_connector:
+        what: jstph
+        params:
+          pos: VCC
+          neg: GND
+        where:
+          ref: matrix_inner_num
+          shift: [1.5U, -1.6U]
+          rotate: -90
